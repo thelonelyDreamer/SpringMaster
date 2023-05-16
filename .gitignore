@@ -33,6 +33,12 @@ hs_err_pid*
 **/node_moudles/
 **/dist/
 
+# gradle
+**/.gradle/
+!**/build.gradle
+!**/settings.gradle
+**/build/
+
 # c c++
 **/*.exe
 
