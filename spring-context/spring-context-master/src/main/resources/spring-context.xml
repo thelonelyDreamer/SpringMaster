@@ -5,6 +5,11 @@
                            http://www.springframework.org/schema/beans/spring-beans.xsd">
 
     <bean id="user" class="org.example.pojo.User">
+    </bean>
+    <bean id="user1" class="org.example.factory.UserStaticFactory" factory-method="create"></bean>
+    <bean id="userFactory" class="org.example.factory.UserInstanceFactory"></bean>
+    <bean id="userInstance" class="org.example.pojo.User" factory-bean="userFactory" factory-method="createUser">
 
     </bean>
+    <bean id="userFactoryBean" class="org.example.factory.UserFactory"></bean>
 </beans>
