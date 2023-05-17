@@ -1,15 +1,24 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
-                           http://www.springframework.org/schema/beans/spring-beans.xsd">
+                           http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/aop https://www.springframework.org/schema/aop/spring-aop.xsd">
 
-    <bean id="user" class="org.example.pojo.User">
-    </bean>
-    <bean id="user1" class="org.example.factory.UserStaticFactory" factory-method="create"></bean>
-    <bean id="userFactory" class="org.example.factory.UserInstanceFactory"></bean>
-    <bean id="userInstance" class="org.example.pojo.User" factory-bean="userFactory" factory-method="createUser">
-
-    </bean>
-    <bean id="userFactoryBean" class="org.example.factory.UserFactory"></bean>
+<bean id="user" class="org.example.pojo.User">
+</bean>
+<bean id="user1" class="org.example.factory.UserStaticFactory" factory-method="create"></bean>
+<bean id="userFactory" class="org.example.factory.UserInstanceFactory"></bean>
+<bean id="userInstance" class="org.example.pojo.User" factory-bean="userFactory" factory-method="createUser"></bean>
+<bean id="userFactoryBean" class="org.example.factory.UserFactory"></bean>
+<bean id="customAspect" class="org.example.aspect.CustomAspect"></bean>
+<bean id="selfBean" class="org.example.bean.SelfBean"></bean>
+<aop:config>
+    <!-- 声明切面 -->
+    <aop:aspect ref="customAspect">
+        <!-- 抽取切点表达式 -->
+        <aop:pointcut id="test" expression="execution(* org.example.factory.*.*(..))"/>
+        <!-- 设置增强 -->
+        <aop:before method="before" pointcut-ref="test"></aop:before>
+    </aop:aspect>
+</aop:config>
 </beans>
