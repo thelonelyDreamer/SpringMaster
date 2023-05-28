@@ -3,11 +3,17 @@ server:
 eureka:
   instance:
     hostname: localhost7001
+    #心跳检测时间（例如每秒检测一次）
+    lease-renewal-interval-in-seconds: 1
+    #移除服务实例距离上一次检测到心跳的时间（例如0秒的时候还能检测到心跳，如果1秒的时候检测不到，那么到2秒的时候就移除实例）
+    lease-expiration-duration-in-seconds: 2
+
   client:
     register-with-eureka: false
     fetch-registry: false
     service-url:
       defaultZone: http://localhost:7002/eureka/,http://localhost:7003/eureka/
+
 spring:
   application:
     name: eureka
