@@ -1,13 +1,15 @@
 package org.example;
 
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.scheduling.annotation.EnableAsync;
 
+/**
+ * @author 23167
+ */
 @SpringBootApplication
-@EnableAsync
-public class DemoApp {
+public class JpaMasterApp {
     public static void main(String[] args) {
-        SpringApplication.run(DemoApp.class,args);
+        SpringApplication.run(JpaMasterApp.class,args);
     }
 }
